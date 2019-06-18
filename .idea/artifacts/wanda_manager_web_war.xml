@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="wanda-manager-web:war">
+    <output-path>$PROJECT_DIR$/wanda-manager/wanda-manager-web/target</output-path>
+    <root id="archive" name="wanda-manager-web.war">
+      <element id="artifact" artifact-name="wanda-manager-web:war exploded" />
+    </root>
+  </artifact>
+</component>

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/wanda-common/wanda-common.iml" filepath="$PROJECT_DIR$/wanda-common/wanda-common.iml" />
+      <module fileurl="file://$PROJECT_DIR$/wanda-manager/wanda-manager.iml" filepath="$PROJECT_DIR$/wanda-manager/wanda-manager.iml" />
+      <module fileurl="file://$PROJECT_DIR$/wanda-manager/wanda-manager-dao/wanda-manager-dao.iml" filepath="$PROJECT_DIR$/wanda-manager/wanda-manager-dao/wanda-manager-dao.iml" />
+      <module fileurl="file://$PROJECT_DIR$/wanda-manager/wanda-manager-interface/wanda-manager-interface.iml" filepath="$PROJECT_DIR$/wanda-manager/wanda-manager-interface/wanda-manager-interface.iml" />
+      <module fileurl="file://$PROJECT_DIR$/wanda-manager/wanda-manager-pojo/wanda-manager-pojo.iml" filepath="$PROJECT_DIR$/wanda-manager/wanda-manager-pojo/wanda-manager-pojo.iml" />
+      <module fileurl="file://$PROJECT_DIR$/wanda-manager/wanda-manager-service/wanda-manager-service.iml" filepath="$PROJECT_DIR$/wanda-manager/wanda-manager-service/wanda-manager-service.iml" />
+      <module fileurl="file://$PROJECT_DIR$/wanda-manager/wanda-manager-web/wanda-manager-web.iml" filepath="$PROJECT_DIR$/wanda-manager/wanda-manager-web/wanda-manager-web.iml" />
+      <module fileurl="file://$PROJECT_DIR$/wanda-parent/wanda-parent.iml" filepath="$PROJECT_DIR$/wanda-parent/wanda-parent.iml" />
+    </modules>
+  </component>
+</project>
