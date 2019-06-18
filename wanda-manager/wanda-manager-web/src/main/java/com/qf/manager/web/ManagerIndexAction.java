@@ -15,12 +15,15 @@ public class ManagerIndexAction {
     public String index1(@PathVariable String page){
         return page;
     }
+
     @RequestMapping(value = "/pages/{pageName1}",method = RequestMethod.GET)
     public String index2(@PathVariable String pageName1){
-        return "/pages"+pageName1;
+        return "pages/"+pageName1;
     }
+
     @RequestMapping(value = "/pages/{pageName1}/{pageName2}",method = RequestMethod.GET)
     public String index3(@PathVariable String pageName1,@PathVariable String pageName2){
-        return "/pages"+pageName1+"/"+pageName2;
+        return "pages/"+pageName1+"/"+pageName2;
     }
+
 }
