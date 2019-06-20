@@ -8,7 +8,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+
+import java.util.List;
+
 
 @Controller
 public class ItemAction {
@@ -32,5 +36,25 @@ public class ItemAction {
             e.printStackTrace();
         }
         return result;
+    }
+
+    /**
+     * 批量删除
+     * @param ids
+     * @return
+     */
+    @RequestMapping(value = "/item/batch",method = RequestMethod.POST)
+    @ResponseBody
+    public int remove(@RequestParam("ids[]") List<Long> ids){
+
+        System.out.println(ids);
+        int i = 0;
+        try {
+            i = itemService.updateItemsByIds(ids);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        System.out.println(i);
+        return i;
     }
 }

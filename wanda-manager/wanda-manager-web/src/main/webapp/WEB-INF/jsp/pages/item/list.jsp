@@ -100,9 +100,9 @@
         admin: '{/}../../static/js/admin'
     });
     //可以引入admin.js，两步走：extend use
-    layui.use(['table','admin','jquery'], function () {
+    layui.use(['table', 'admin', 'jquery'], function () {
         var table = layui.table,
-        $ = layui.jquery;
+            $ = layui.jquery;
         table.render({
             //表格属性
             //要渲染的容器
@@ -133,9 +133,9 @@
 //                        $(this).text('删除');
 //                    }
 //                });
-                //$.ajax({});
-                //$.get();
-                //$.post();
+            //$.ajax({});
+            //$.get();
+            //$.post();
 //                $.post(
 //                    //url:string,异步请求提交给谁处理
 //                    'abc',
@@ -148,6 +148,57 @@
 //                );
 //            }
         });
+
+        //批量删除按钮的点击事件
+        $('.demoTable .layui-btn-danger').click(function () {
+            //获取按钮的data-type属性
+            var type = $(this).data('type');
+            //用三元运算符判断active[type]为真值就调用，为假值就什么都不做
+            active[type] ? active[type].call(this) : '';
+        });
+        var active = {
+            reload: function () {
+                //第一步获取选择的文本框的内容
+                var title = $('#title').val();
+                //第二步判断内容是否为空
+                if ($.trim(title).length > 0) {
+                    //文本框中有内容，表格需要重载，另外发送一个请求 items
+                    table.reload('articleList', {
+                        page: {curr: 1},
+                        //第一个title作为表单数据传递出去的key，第二个就是这里定义的js变量
+                        where: {title: title}
+                    });
+                }
+            },
+            getCheckData: function () {
+                //获取选中行
+                var data = table.checkStatus('articleList').data;
+                //判断长度（大于零至少选中了一行）
+                if (data.length > 0) {
+                    //目的：遍历data数组，取出其中的id，放入另一个数组中
+                    var ids = []; //定义一个空数组
+                    for (var i = 0; i < data.length; i++){
+                        ids.push(data[i].id);
+                    }
+                    //目的：发送异步请求，将ids数组传递到后端
+                    $.post(
+                        '../../item/batch',   //url
+                        {'ids[]':ids},       //data
+                        function (data) {
+                            //至少删除一条记录
+                            if(data>0){
+                                //停留在原页面并刷新
+                                $('.layui-laypage-btn').click();
+                                layer.msg("恭喜您，删除成功！",{icon:1});
+                            }
+                        }
+                    );
+                }else {
+                    //没有选中
+                    layer.msg('请至少选中一行');
+                }
+            }
+        };
     });
 
 </script>

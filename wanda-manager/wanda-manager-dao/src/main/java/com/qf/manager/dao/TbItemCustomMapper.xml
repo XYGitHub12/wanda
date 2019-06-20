@@ -13,7 +13,7 @@
   </sql>
 
   <select id="getCount" resultType="_long">
-    SELECT count(1) FROM tb_item AS i
+    SELECT count(1) FROM tb_item AS i WHERE i.status != 3
   </select>
 
   <!--<select id="selectItemsByPage" parameterType="com.qf.manager.pojo.dto.PageParam" resultType="com.qf.manager.pojo.vo.ItemCustom">-->
@@ -29,6 +29,7 @@
     tb_item i
     LEFT JOIN tb_item_cat c
     ON i.cid=c.id
+      WHERE i.status != 3
     ORDER BY id
     limit #{offset},#{limit}
   </select>
