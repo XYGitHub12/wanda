@@ -2,7 +2,6 @@ package com.qf.manager.web;
 
 import com.qf.manager.pojo.dto.ItemResult;
 import com.qf.manager.pojo.dto.PageParam;
-import com.qf.manager.pojo.po.TbItem;
 import com.qf.manager.pojo.vo.ItemCustom;
 import com.qf.manager.service.ItemService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,7 +17,7 @@ public class ItemAction {
     private ItemService itemService;
 
     /**
-     * 分页查询数据
+     * 分页查询数据（商品分类，商品状态显示）
      * @param  pageParam
      * @return result
      */

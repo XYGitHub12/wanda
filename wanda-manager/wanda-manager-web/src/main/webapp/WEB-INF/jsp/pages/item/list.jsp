@@ -118,21 +118,21 @@
                 {field: 'title', title: '商品名称'},
                 {field: 'sellPoint', title: '商品卖点'},
                 {field: 'catName', title: '分类名称'},
-                {field: 'status', title: '商品状态'}
+                {field: 'statusName', title: '商品状态'}
             ]],
-            done:function(res,curr,count){
-                console.log($("[data-field='status']").children());
-                $("[data-field='status']").children().each(function(){
-                    if($(this).text() == '1'){
-                        $(this).text('正常');
-                    }
-                    if($(this).text() == '2'){
-                        $(this).text('下架');
-                    }
-                    if($(this).text() == '3'){
-                        $(this).text('删除');
-                    }
-                });
+//            done:function(res,curr,count){
+//                console.log($("[data-field='status']").children());
+//                $("[data-field='status']").children().each(function(){
+//                    if($(this).text() == '1'){
+//                        $(this).text('正常');
+//                    }
+//                    if($(this).text() == '2'){
+//                        $(this).text('下架');
+//                    }
+//                    if($(this).text() == '3'){
+//                        $(this).text('删除');
+//                    }
+//                });
                 //$.ajax({});
                 //$.get();
                 //$.post();
@@ -146,7 +146,7 @@
 //                    //dataType:string
 //                    'json'
 //                );
-            }
+//            }
         });
     });
 

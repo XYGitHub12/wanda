@@ -3,7 +3,13 @@
 <mapper namespace="com.qf.manager.dao.TbItemCustomMapper" >
 
   <sql id="Base_Column_List" >
-    i.id, i.title, i.sell_point sellPoint, i.price, i.num, i.barcode, i.image, i.cid, i.status, i.created, i.updated,c.name catName
+    i.id, i.title, i.sell_point sellPoint, i.price, i.num, i.barcode, i.image, i.cid,
+     CASE i.status
+        WHEN 1 THEN '正常'
+        WHEN 2 THEN '下架'
+        WHEN 3 THEN '删除'
+        ELSE '未知' END AS statusName,
+    i.created, i.updated,c.name catName
   </sql>
 
   <select id="getCount" resultType="_long">
@@ -23,6 +29,7 @@
     tb_item i
     LEFT JOIN tb_item_cat c
     ON i.cid=c.id
+    ORDER BY id
     limit #{offset},#{limit}
   </select>
 </mapper>
