@@ -3,6 +3,7 @@ package com.qf.manager.web;
 import com.qf.manager.pojo.dto.ItemResult;
 import com.qf.manager.pojo.dto.PageParam;
 import com.qf.manager.pojo.po.TbItem;
+import com.qf.manager.pojo.vo.ItemCustom;
 import com.qf.manager.service.ItemService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -23,9 +24,9 @@ public class ItemAction {
      */
     @RequestMapping(value = "/items",method = RequestMethod.GET)
     @ResponseBody
-    public ItemResult<TbItem> listItems(PageParam pageParam){
+    public ItemResult<ItemCustom> listItems(PageParam pageParam){
 
-        ItemResult<TbItem> result = null;
+        ItemResult<ItemCustom> result = null;
         try {
             result = itemService.listItems(pageParam);
         }catch (Exception e){

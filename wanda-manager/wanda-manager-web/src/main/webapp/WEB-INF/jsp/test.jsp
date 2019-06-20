@@ -11,13 +11,20 @@
 <body>
 <table id="mytable" lay-filter="mytable"></table>
 <script>
+    layui.extend({
+        admin: '{/}./static/js/admin'
+    });
     layui.use(['table'],function(){
         var table = layui.table;
         table.render({
             //表格属性
             //列属性
             elem:'#mytable',
-            url:'/items'
+            url:'/items',
+            cols:[[
+                {type:'checkbox'},
+                {field:'id',title:'编号'}
+            ]]
         });
     });
     //        $(function(){

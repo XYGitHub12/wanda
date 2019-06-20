@@ -3,17 +3,26 @@
 <mapper namespace="com.qf.manager.dao.TbItemCustomMapper" >
 
   <sql id="Base_Column_List" >
-    id, title, sell_point, price, num, barcode, image, cid, status, created, updated
+    i.id, i.title, i.sell_point sellPoint, i.price, i.num, i.barcode, i.image, i.cid, i.status, i.created, i.updated,c.name catName
   </sql>
 
   <select id="getCount" resultType="_long">
-    SELECT count(1) FROM tb_item
+    SELECT count(1) FROM tb_item AS i
   </select>
 
-  <select id="selectItemsByPage" parameterType="com.qf.manager.pojo.dto.PageParam" resultType="com.qf.manager.pojo.po.TbItem">
+  <!--<select id="selectItemsByPage" parameterType="com.qf.manager.pojo.dto.PageParam" resultType="com.qf.manager.pojo.vo.ItemCustom">-->
+    <!--SELECT-->
+    <!--<include refid="Base_Column_List" />-->
+    <!--FROM tb_item limit #{offset},#{limit}-->
+  <!--</select>-->
+
+  <select id="selectItemsByPage" parameterType="com.qf.manager.pojo.dto.PageParam" resultType="com.qf.manager.pojo.vo.ItemCustom">
     SELECT
     <include refid="Base_Column_List" />
-    FROM tb_item limit #{offset},#{limit}
+    FROM
+    tb_item i
+    LEFT JOIN tb_item_cat c
+    ON i.cid=c.id
+    limit #{offset},#{limit}
   </select>
-
 </mapper>

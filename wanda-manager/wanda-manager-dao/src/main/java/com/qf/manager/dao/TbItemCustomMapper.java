@@ -1,12 +1,12 @@
 package com.qf.manager.dao;
 
 import com.qf.manager.pojo.dto.PageParam;
-import com.qf.manager.pojo.po.TbItem;
+import com.qf.manager.pojo.vo.ItemCustom;
 
 import java.util.List;
 
 public interface TbItemCustomMapper {
     long getCount();
 
-    List<TbItem> selectItemsByPage(PageParam pageParam);
+    List<ItemCustom> selectItemsByPage(PageParam pageParam);
 }

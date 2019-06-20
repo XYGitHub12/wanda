@@ -96,9 +96,13 @@
 
 </div>
 <script type="text/javascript">
-
-    layui.use(['table'], function () {
-        var table = layui.table;
+    layui.extend({
+        admin: '{/}../../static/js/admin'
+    });
+    //可以引入admin.js，两步走：extend use
+    layui.use(['table','admin','jquery'], function () {
+        var table = layui.table,
+        $ = layui.jquery;
         table.render({
             //表格属性
             //要渲染的容器
@@ -109,9 +113,40 @@
             //列
             cols: [[
                 //field title 列属性
+                {type: 'checkbox'},
                 {field: 'id', title: '商品编号'},
-                {field: 'title', title: '商品名称'}
-            ]]
+                {field: 'title', title: '商品名称'},
+                {field: 'sellPoint', title: '商品卖点'},
+                {field: 'catName', title: '分类名称'},
+                {field: 'status', title: '商品状态'}
+            ]],
+            done:function(res,curr,count){
+                console.log($("[data-field='status']").children());
+                $("[data-field='status']").children().each(function(){
+                    if($(this).text() == '1'){
+                        $(this).text('正常');
+                    }
+                    if($(this).text() == '2'){
+                        $(this).text('下架');
+                    }
+                    if($(this).text() == '3'){
+                        $(this).text('删除');
+                    }
+                });
+                //$.ajax({});
+                //$.get();
+                //$.post();
+//                $.post(
+//                    //url:string,异步请求提交给谁处理
+//                    'abc',
+//                    //data:object,提交什么后台处理
+//                    {},
+//                    //success:function,成功后的回调函数
+//                    function(data){},
+//                    //dataType:string
+//                    'json'
+//                );
+            }
         });
     });
 
