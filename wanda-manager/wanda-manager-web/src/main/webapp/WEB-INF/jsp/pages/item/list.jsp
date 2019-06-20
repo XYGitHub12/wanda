@@ -156,7 +156,14 @@
             //用三元运算符判断active[type]为真值就调用，为假值就什么都不做
             active[type] ? active[type].call(this) : '';
         });
+
+        //搜索按钮的点击事件
+        $('.weadmin-body,.layui-btn').click(function () {
+            var type = $(this).data('type');
+            active[type] ? active[type].call(this) : '';
+        });
         var active = {
+
             reload: function () {
                 //第一步获取选择的文本框的内容
                 var title = $('#title').val();

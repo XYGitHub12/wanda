@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.qf.manager.dao.TbItemCustomMapper" >
+<mapper namespace="com.qf.manager.dao.TbItemCustomMapper">
 
-  <sql id="Base_Column_List" >
+    <sql id="Base_Column_List">
     i.id, i.title, i.sell_point sellPoint, i.price, i.num, i.barcode, i.image, i.cid,
      CASE i.status
         WHEN 1 THEN '正常'
@@ -12,25 +12,35 @@
     i.created, i.updated,c.name catName
   </sql>
 
-  <select id="getCount" resultType="_long">
-    SELECT count(1) FROM tb_item AS i WHERE i.status != 3
-  </select>
+    <sql id="Where_Column">
+        <where>
+            i.status != 3
+            <if test="itemQuery !=null and itemQuery.title !=null and itemQuery.title !=''">
+                AND i.title LIKE '%${itemQuery.title}%'
+            </if>
+        </where>
+    </sql>
 
-  <!--<select id="selectItemsByPage" parameterType="com.qf.manager.pojo.dto.PageParam" resultType="com.qf.manager.pojo.vo.ItemCustom">-->
+    <select id="getCount" resultType="_long" parameterType="com.qf.manager.pojo.dto.ItemQuery">
+        SELECT count(1) FROM tb_item AS i
+        <include refid="Where_Column"/>
+    </select>
+
+    <!--<select id="selectItemsByPage" parameterType="com.qf.manager.pojo.dto.PageParam" resultType="com.qf.manager.pojo.vo.ItemCustom">-->
     <!--SELECT-->
     <!--<include refid="Base_Column_List" />-->
     <!--FROM tb_item limit #{offset},#{limit}-->
-  <!--</select>-->
+    <!--</select>-->
 
-  <select id="selectItemsByPage" parameterType="com.qf.manager.pojo.dto.PageParam" resultType="com.qf.manager.pojo.vo.ItemCustom">
-    SELECT
-    <include refid="Base_Column_List" />
-    FROM
-    tb_item i
-    LEFT JOIN tb_item_cat c
-    ON i.cid=c.id
-      WHERE i.status != 3
-    ORDER BY id
-    limit #{offset},#{limit}
-  </select>
+    <select id="selectItemsByPage" resultType="com.qf.manager.pojo.vo.ItemCustom">
+        SELECT
+        <include refid="Base_Column_List"/>
+        FROM
+        tb_item i
+        LEFT JOIN tb_item_cat c
+        ON i.cid=c.id
+        <include refid="Where_Column"/>
+        ORDER BY id
+        limit #{pageParam.offset},#{pageParam.limit}
+    </select>
 </mapper>

@@ -2,6 +2,7 @@ package com.qf.manager.service.impl;
 
 import com.qf.manager.dao.TbItemCustomMapper;
 import com.qf.manager.dao.TbItemMapper;
+import com.qf.manager.pojo.dto.ItemQuery;
 import com.qf.manager.pojo.dto.ItemResult;
 import com.qf.manager.pojo.dto.PageParam;
 import com.qf.manager.pojo.po.TbItem;
@@ -25,15 +26,15 @@ public class ItemServiceImpl implements ItemService {
     private TbItemMapper itemDao;
 
     @Override
-    public ItemResult<ItemCustom> listItems(PageParam pageParam) {
+    public ItemResult<ItemCustom> listItems(PageParam pageParam,ItemQuery itemQuery) {
 
         ItemResult<ItemCustom> result = new ItemResult<>();
         result.setCode(0);
         result.setMsg("select success");
         try {
-            long count = itemCustomDao.getCount();
+            long count = itemCustomDao.getCount(itemQuery);
             result.setCount(count);
-            List<ItemCustom> data = itemCustomDao.selectItemsByPage(pageParam);
+            List<ItemCustom> data = itemCustomDao.selectItemsByPage(pageParam,itemQuery);
             result.setData(data);
         }catch (Exception e){
             result.setCode(-1);

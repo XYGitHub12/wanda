@@ -1,5 +1,6 @@
 package com.qf.manager.web;
 
+import com.qf.manager.pojo.dto.ItemQuery;
 import com.qf.manager.pojo.dto.ItemResult;
 import com.qf.manager.pojo.dto.PageParam;
 import com.qf.manager.pojo.vo.ItemCustom;
@@ -21,17 +22,17 @@ public class ItemAction {
     private ItemService itemService;
 
     /**
-     * 分页查询数据（商品分类，商品状态显示）
-     * @param  pageParam
+     * 分页查询数据（商品分类，商品状态显示）+模糊查询
+     * @param  pageParam    itemQuery
      * @return result
      */
     @RequestMapping(value = "/items",method = RequestMethod.GET)
     @ResponseBody
-    public ItemResult<ItemCustom> listItems(PageParam pageParam){
+    public ItemResult<ItemCustom> listItems(PageParam pageParam,ItemQuery itemQuery){
 
         ItemResult<ItemCustom> result = null;
         try {
-            result = itemService.listItems(pageParam);
+            result = itemService.listItems(pageParam,itemQuery);
         }catch (Exception e){
             e.printStackTrace();
         }
