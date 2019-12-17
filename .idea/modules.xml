@@ -10,6 +10,7 @@
       <module fileurl="file://$PROJECT_DIR$/wanda-manager/wanda-manager-service/wanda-manager-service.iml" filepath="$PROJECT_DIR$/wanda-manager/wanda-manager-service/wanda-manager-service.iml" />
       <module fileurl="file://$PROJECT_DIR$/wanda-manager/wanda-manager-web/wanda-manager-web.iml" filepath="$PROJECT_DIR$/wanda-manager/wanda-manager-web/wanda-manager-web.iml" />
       <module fileurl="file://$PROJECT_DIR$/wanda-parent/wanda-parent.iml" filepath="$PROJECT_DIR$/wanda-parent/wanda-parent.iml" />
+      <module fileurl="file://$PROJECT_DIR$/wanda-quartz-web/wanda-quartz-web.iml" filepath="$PROJECT_DIR$/wanda-quartz-web/wanda-quartz-web.iml" />
     </modules>
   </component>
 </project>

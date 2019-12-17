@@ -1,5 +1,6 @@
 package com.qf.manager.web;
 
+import com.qf.common.pojo.dto.MessageResult;
 import com.qf.manager.pojo.dto.ItemQuery;
 import com.qf.manager.pojo.dto.ItemResult;
 import com.qf.manager.pojo.dto.PageParam;
@@ -58,4 +59,25 @@ public class ItemAction {
         System.out.println(i);
         return i;
     }
+
+    /**
+     * Solr全文检索之一键导入索引库
+     */
+    @ResponseBody
+    @RequestMapping(value = "/item/indexlib/import",method = RequestMethod.POST)
+    public MessageResult indexImport(){
+
+        MessageResult ms = new MessageResult();
+        ms.setSuccess(false);
+        ms.setMsg("import failed");
+        try {
+            itemService.importIndex();
+            ms.setSuccess(true);
+            ms.setMsg("import success");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return ms;
+    }
+
 }

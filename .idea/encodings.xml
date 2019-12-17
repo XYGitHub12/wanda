@@ -9,5 +9,6 @@
     <file url="file://$PROJECT_DIR$/wanda-manager/wanda-manager-service" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/wanda-manager/wanda-manager-web" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/wanda-parent" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/wanda-quartz-web" charset="UTF-8" />
   </component>
 </project>

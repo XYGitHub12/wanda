@@ -10,6 +10,7 @@
     <modules>
         <module>../wanda-common</module>
         <module>../wanda-manager</module>
+        <module>../wanda-quartz-web</module>
     </modules>
     <packaging>pom</packaging>
 

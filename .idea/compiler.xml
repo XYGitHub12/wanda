@@ -12,6 +12,7 @@
         <module name="wanda-manager-pojo" />
         <module name="wanda-manager-service" />
         <module name="wanda-manager-web" />
+        <module name="wanda-quartz-web" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
@@ -23,6 +24,7 @@
       <module name="wanda-manager-service" target="1.8" />
       <module name="wanda-manager-web" target="1.8" />
       <module name="wanda-parent" target="1.8" />
+      <module name="wanda-quartz-web" target="1.8" />
     </bytecodeTargetLevel>
   </component>
 </project>

@@ -11,4 +11,6 @@ public interface ItemService {
     ItemResult<ItemCustom> listItems(PageParam pageParam,ItemQuery itemQuery);
 
     int updateItemsByIds(List<Long> ids);
+
+    void importIndex();
 }

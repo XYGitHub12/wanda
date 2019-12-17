@@ -8,7 +8,10 @@ import com.qf.manager.pojo.dto.PageParam;
 import com.qf.manager.pojo.po.TbItem;
 import com.qf.manager.pojo.po.TbItemExample;
 import com.qf.manager.pojo.vo.ItemCustom;
+import com.qf.manager.pojo.vo.TbItemIndex;
 import com.qf.manager.service.ItemService;
+import org.apache.solr.client.solrj.SolrServer;
+import org.apache.solr.common.SolrInputDocument;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,6 +27,8 @@ public class ItemServiceImpl implements ItemService {
     private TbItemCustomMapper itemCustomDao;
     @Autowired
     private TbItemMapper itemDao;
+    @Autowired
+    private SolrServer solrServer;
 
     @Override
     public ItemResult<ItemCustom> listItems(PageParam pageParam,ItemQuery itemQuery) {
@@ -69,5 +74,31 @@ public class ItemServiceImpl implements ItemService {
         }
 
         return i;
+    }
+
+    @Override
+    public void importIndex() {
+        try {
+            //采集数据
+            List<TbItemIndex> list = itemCustomDao.listIndexByTwo();
+            //导入索引库
+            for(TbItemIndex i : list){
+                //创建document对象
+                SolrInputDocument document = new SolrInputDocument();
+                //把list中每个对象的属性设置到document的filed域中
+                document.addField("id",i.getId());
+                document.addField("item_title",i.getTitle());
+                document.addField("item_sell_point",i.getSellPoint());
+                document.addField("item_price",i.getPrice());
+                document.addField("item_image",i.getImage());
+                document.addField("item_category_name",i.getCatName());
+                solrServer.add(document);
+            }
+            //提交
+            solrServer.commit();
+        }catch (Exception e){
+            logger.error(e.getMessage(),e);
+            e.printStackTrace();
+        }
     }
 }
